@@ -1,0 +1,19 @@
+{% extends 'Base.html' %}
+{% block content %}
+
+        <br>
+        <h3>Zonas</h3>
+        <br>
+        <table class="table table-bordered"> 
+            <tbody>
+                <tr>
+                    {% for z in object_list %}
+                    <p><b>NOMBRE: </b>{{z.nombre}}</p>
+                    <p><b>CP: </b>{{z.cp}}</p>
+                    {% endfor %}
+                </tr>
+            </tbody>
+
+        </table>
+
+{% endblock content %}

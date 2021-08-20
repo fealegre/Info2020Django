@@ -1,0 +1,16 @@
+
+    
+<form method="POST" enctype="multipart/form-data" action="{% url 'Comentarios:Comentar' object.pk %}"> 
+
+    {% csrf_token %} 
+    <br><br>
+    <center>
+            <div class="form-group">
+
+                <textarea class="form-control" placeholder="Comentario..." name="descripcion" id="d_descripcion" rows="3"></textarea>
+            </div>
+            <div>
+                <input type="submit" class="btn btn-warning" value="Enviar" onclick="window.location.reload()">
+            </div> 
+        </center>  
+</form> 

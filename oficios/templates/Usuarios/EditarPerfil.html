@@ -1,0 +1,93 @@
+{% extends "Base.html" %}
+{% block title %}
+<title> <- Editar Perfil - {{user.username}} -> </title>
+{% endblock title %}
+{% block content %}
+<header class="editPerfilHeader">
+    </header>
+    <div class="container h-100">
+        {%if form.errors %} 
+            <div class="alert alert-primary" role="alert">
+                {{form.errors}}
+            </div>
+        {%endif%}  
+        <form method="POST" enctype="multipart/form-data" >
+            {% csrf_token %}    
+            <div class="jumbotron">
+                <h2 class="display-4">Editar {{user.username}}</h2>
+                <hr>
+                <br>    
+                
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        {{ form.first_name.errors }}
+                        {{ form.first_name.label_tag }} {{ form.first_name }}
+                    </div>
+                    <div class="form-group col-md-6">
+                        {{ form.last_name.errors }}
+                        {{ form.last_name.label_tag }} {{ form.last_name }}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        {{ form.username.errors }}
+                        {{ form.username.label_tag }} {{ form.username }}
+                    </div>
+                    <div class="form-group col-md-6">
+                        {{ form.email.errors }}
+                        {{ form.email.label_tag }} {{ form.email }}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        {{ form.phone.errors }}
+                        {{ form.phone.label_tag }} {{ form.phone }}
+                    </div>
+                    <div class="form-group col-md-6">
+                        {{ form.address.errors }}
+                        {{ form.address.label_tag }} {{ form.address }}
+                    </div>
+                    
+                </div>
+                {% if user.Trabajador %}
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        {{ form.especialidad.errors }}
+                        {{ form.especialidad.label_tag }} {{ form.especialidad }}
+                    </div>
+                    <div class="form-group col-md-6">
+                        {{ form.rubro.errors }}
+                        {{ form.rubro.label_tag }} {{ form.rubro }}
+                    </div>
+                    
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        {{ form.certificado.errors }}
+                        {{ form.certificado.label_tag }} {{ form.certificado }}
+                    </div>
+                    <div class="form-group col-md-6">
+                        {{ form.zonas.errors }}
+                        {{ form.zonas.label_tag }} {{ form.zonas }}
+                    </div>
+                    
+                </div>
+                {% endif %}
+                
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        {{ form.password }}
+                        <p class="help">El sistema no almacena las contraseñas originales 
+                            por lo cual no es posible visualizar la contraseña de este usuario, 
+                            pero puede modificarla usando <a href="{% url 'password_change' %}">este formulario</a>.</p>
+                </div>
+                </div>
+                
+
+                
+                <center><input type="submit"  class="btn btn-primary" value="Validar Cambios"></center>
+                
+            </div>
+        </form>
+    </div>
+{% endblock content %}

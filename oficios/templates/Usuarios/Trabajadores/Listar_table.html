@@ -1,0 +1,16 @@
+{% for object in object_list %} 
+                            <tr data-url="{% url 'Trabajadores:mostrarPerfil' object.pk %}">
+                            <td>{{ object.promedio|floatformat:"0" }}/5</td>
+                            <td>{{ object.usuario.first_name}} {{object.usuario.last_name }}</td>
+
+                            <td>{{ object.rubro }}</td>
+                            <td>{{object.especialidad}}</td>
+                            
+                            
+                        <!-- If objet_list is empty  -->
+                            
+                            </tr>
+                            {% empty %} 
+            
+    <strong>No objects yet. </strong> 
+                            {% endfor %}

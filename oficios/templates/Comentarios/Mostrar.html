@@ -1,0 +1,18 @@
+
+
+{% block content %}
+  {% for o in objetos %}
+  <table style="width:100%">
+    <tr>
+        <th>stalker</th>
+        <th>descripcion</th>
+        <th>fecha</th>
+    </tr>
+    <tr>
+        <td>{{o.stalker.usuario.first_name}}</td>
+        <td>{{o.descripcion}}</td>
+        <td>{{o.fecha_pub}}</td>        
+    </tr>
+  </table>
+  {% endfor %}
+{% endblock content %}

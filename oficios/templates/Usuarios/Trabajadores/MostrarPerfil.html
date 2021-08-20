@@ -1,0 +1,161 @@
+{% extends 'Base.html' %}
+{% block title %}
+
+<title> Perfil {{object.usuario.first_name}} </title>
+{% endblock title %}
+
+{% block content %}
+<header class="mostrarPerfilHeader">
+</header>
+    <div class="container h-100">
+        <ul class="list-group">
+            <div class="jumbotron"> 
+                <h2 class="display-4">Perfil: {{object.usuario.last_name}}, {{object.usuario.first_name}}</h2>
+                <hr>
+                <br>    
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        
+                        
+                        
+                        <div class="card" style="width: 18rem;">
+                            <div class="card-header">
+                              Datos personales
+                            </div>
+                            <ul class="list-group list-group-flush">
+                              <li class="list-group-item">Nombre: {{object.usuario.first_name}}</li>
+                              <li class="list-group-item">Nombre: {{object.usuario.last_name}}</li>
+                              <li class="list-group-item">Especialidad: {{object.especialidad}}</li>
+                              <li class="list-group-item">Rubro: {{object.rubro}}</li>
+                            </ul>
+                          </div>
+    
+                    </div>
+                    <div class="form-group col-md-4">
+                        
+                        <div class="card" style="width: 18rem;">
+                            <div class="card-header">
+                              Datos contacto
+                            </div>
+                            <ul class="list-group list-group-flush">
+                              <li class="list-group-item">Telefono: {{object.usuario.phone}}</li>
+                              <li class="list-group-item">Email: {{object.usuario.email}}</li>
+                              <li class="list-group-item">Direccion: {{object.usuario.address}}</li>
+                            </ul>
+                          </div>
+                        
+                    </div>
+                    <div class="form-group col-md-4">
+                      <li class="list-group-item">Ranking: {{object.promedio|floatformat:"0" }}/5</li>
+                      <br>
+                      {% if not user.is_authenticated %}
+                        <div class="row align-items-center justify-content-center text-center">
+                          <font color="red" face="Consolas" size=4>
+                            <P>PARA CALIFICAR Y COMENTAR DEBE ESTAR LOGUEADO</P>
+                        </font>
+                        </div>
+                        
+                      
+                      <div class="row align-items-center justify-content-center text-center">
+                        <a href="{% url 'Stalkers:registro' %}" class="btn btn-info" style="margin: 0.5rem;">
+                          <i class="fas fa-user-plus"></i>Register</a>
+                          <a href="{% url 'login' %}" class="btn btn-success" style="margin: 0.5rem;">
+                            <i class="fas fa-sign-in-alt"></i>Login</a>
+                      </div>
+                          
+
+                        {% else %}
+                      <label for="coment">Califica al trabajador</label>
+                      
+                      <center>{% include 'Calificaciones/Calificar.html' %}</center>
+                      {% endif %}
+                      <br>
+                      <br>
+                        <div class="card" style="width: 18rem;">
+                            <div class="card-header">
+                              Zonas donde opera
+                            </div>
+                            <ul class="list-group list-group-flush">                              
+                              {% for z in object.zonas.all %}
+                                <li class="list-group-item">{{z}}</li>
+                              {% endfor %}
+                            </ul>
+                          </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-4" style="width: 18rem;">    
+                            {%if object.certificado %}
+                            <img id="myImg" src="{{object.certificado.url}}" alt="" style="max-width: 290px;">
+                            {%else%}
+                                <h4>   Sin Imagen....</h4>
+                            {%endif%}
+                    </div>          
+                      {% if coord %}
+                      <div class="form-group col-md-4" style="width: 18rem;">
+                        <iframe src="https://maps.google.com/maps?q=@{{ coord }}&output=embed" width="280" height="280" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                   </div>
+                      {% else %}
+                      <div class="form-group col-md-4" style="width: 18rem;">
+                        <font color="Olive" face="Comic Sans MS,arial" size=4>
+                          <P>{{mal}}</P>
+                      </font>
+                     
+                      
+                      {% if coordZona %}
+
+                        <iframe src="https://maps.google.com/maps?q=@{{ coordZona }}&output=embed" width="280" height="280" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                   
+                      {% endif %}
+                    </div>
+                      {% endif %}
+                </div>
+            </div>
+            <hr>
+            <h3>Comentarios</h3>
+            {% include 'Usuarios/Trabajadores/Mostrar_Comentarios.html' %}
+            {% if not user.is_authenticated %}
+            <div class="row align-items-center justify-content-center text-center">
+              <font color="red" face="Consolas" size=4>
+                <P>PARA CALIFICAR Y COMENTAR DEBE ESTAR LOGUEADO</P>
+            </font>
+            </div>
+            
+          
+          <div class="row align-items-center justify-content-center text-center">
+            <a href="{% url 'Stalkers:registro' %}" class="btn btn-info" style="margin: 0.5rem;">
+              <i class="fas fa-user-plus"></i>Register</a>
+              <a href="{% url 'login' %}" class="btn btn-success" style="margin: 0.5rem;">
+                <i class="fas fa-sign-in-alt"></i>Login</a>
+          </div>
+              
+
+            {% else %}
+                
+                <div class="container">
+                  <div class="row">
+                    <div class="col-12">
+                      {% include 'Comentarios/Comentar.html' %}
+                    </div>
+                  </div>
+                </div>
+              
+            {% endif %}
+        </ul>
+        <br><br><br>
+      </div>
+
+
+    <!-- The Modal -->
+<div id="myModal" class="modal-image">
+
+  <!-- The Close Button -->
+  <span class="close">&times;</span>
+
+  <!-- Modal Content (The Image) -->
+  <img class="modal-image-content" id="img01">
+
+  <!-- Modal Caption (Image Text) -->
+  <div id="caption"></div>
+</div>
+{% endblock content %}

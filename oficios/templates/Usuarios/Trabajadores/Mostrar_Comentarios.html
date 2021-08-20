@@ -1,0 +1,23 @@
+
+
+<div class="table-wrapper-scroll-y my-custom-scrollbar">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">stalker</th>
+                <th scope="col">descripcion</th>
+                <th scope="col">fecha</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for co in comentario %}
+            <tr>            
+                <td>{{co.stalker.usuario.first_name}}</td>
+                <td>{{co.descripcion}}</td>
+                <td>{{co.fecha_pub}}</td>  
+            </tr>
+            {% endfor %} 
+        </tbody>
+    </table>
+</div>
+
