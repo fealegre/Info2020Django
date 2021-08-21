@@ -10,5 +10,7 @@ Categoriza los servicios por Rubro y Especialidad.
 Reune información de zona de cobertura, detalles del servicio brindado, acreditaciónes o certificaciones de capacidad en el rubro que ofrece, búsqueda filtrada por rubros y por zonas, ranking valorativo y comentarios de los usuarios de los servicios.
 
 4 MESES DE DURACIÓN
+
 10 HORAS SEMANALES
+
 CERTIFICADO
