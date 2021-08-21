@@ -2,4 +2,4 @@ from django.apps import AppConfig
 
 
 class TrabajadoresConfig(AppConfig):
-    name = 'Trabajadores'
+    name = 'apps.Trabajadores'
